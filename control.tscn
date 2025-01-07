@@ -1,0 +1,179 @@
+[gd_scene load_steps=11 format=3 uid="uid://c08wy46cqak86"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_u8obr"]
+[ext_resource type="Texture2D" uid="uid://b4fepjd35x6v1" path="res://left.png" id="2_y77m1"]
+[ext_resource type="Texture2D" uid="uid://dkhah1koml7a1" path="res://right.png" id="3_ffcyo"]
+[ext_resource type="Texture2D" uid="uid://deupso0ik0tq3" path="res://refresh.png" id="5_otuur"]
+[ext_resource type="Texture2D" uid="uid://cet308ymrtc0b" path="res://shuffle.png" id="6_sbstq"]
+
+[sub_resource type="Gradient" id="Gradient_hyke3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4c5kr"]
+gradient = SubResource("Gradient_hyke3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uk37m"]
+texture = SubResource("GradientTexture2D_4c5kr")
+
+[sub_resource type="Gradient" id="Gradient_p4ycx"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mo246"]
+gradient = SubResource("Gradient_p4ycx")
+
+[node name="Control" type="Control"]
+texture_filter = 2
+layout_mode = 3
+anchor_left = -0.00434028
+anchor_top = 0.0601852
+anchor_right = 0.997396
+anchor_bottom = 1.06019
+offset_left = 5.0
+offset_top = -39.0
+offset_right = 3.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_u8obr")
+metadata/_edit_use_anchors_ = true
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -107.0
+offset_right = 218.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uk37m")
+
+[node name="label" type="Label" parent="panel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -107.0
+offset_right = 1522.0
+offset_bottom = 745.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 128
+text = "aiojsd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttonLeft" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="left" type="Button" parent="buttonLeft"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 150.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_y77m1")
+
+[node name="angleCalc" type="Node2D" parent="buttonLeft/left"]
+
+[node name="buttonRight" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="right" type="Button" parent="buttonRight"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 150.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("3_ffcyo")
+
+[node name="angleCalc" type="Node2D" parent="buttonRight/right"]
+
+[node name="originPos" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -107.0
+offset_right = 218.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uk37m")
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -10
+scale = Vector2(18, 10)
+texture = SubResource("GradientTexture2D_mo246")
+centered = false
+
+[node name="cardset" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.99999
+offset_right = 256.0
+offset_bottom = 46.0
+
+[node name="open_folder" type="Button" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 12.0
+offset_right = 404.0
+offset_bottom = 43.0
+text = "Open Card Folder"
+
+[node name="refresh" type="Button" parent="."]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 4.99999
+offset_right = 580.0
+offset_bottom = 173.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("5_otuur")
+
+[node name="shuffle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 4.99999
+offset_right = 631.0
+offset_bottom = 173.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("6_sbstq")
+
+[connection signal="mouse_entered" from="panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="panel" to="." method="_on_panel_mouse_exited"]
+[connection signal="item_selected" from="cardset" to="." method="_on_cardset_item_selected"]
+[connection signal="pressed" from="open_folder" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="shuffle" to="." method="_on_shuffle_pressed"]
